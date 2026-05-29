@@ -40,18 +40,6 @@ pipeline {
     }
 }
  
-        stage('Generate Reports') {
-            steps {
-                publishHTML([
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'reports',
-                    reportFiles: 'ExtentReport.html',
-                    reportName: 'Extent Report'
-                ])
-            }
-        }
     }
  
     post {
