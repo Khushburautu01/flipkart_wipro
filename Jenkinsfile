@@ -11,7 +11,7 @@ pipeline {
  
         stage('Git Checkout') {
             steps {
-                git 'https://github.com/your-repo/flipkart-bdd-framework.git'//git url
+                git 'https://github.com/Khushburautu01/flipkart_wipro.git'//
             }
         }
  
