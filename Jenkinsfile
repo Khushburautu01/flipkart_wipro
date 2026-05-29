@@ -26,6 +26,18 @@ pipeline {
                 bat 'mvn test'
             }
         }
+     stage('Publish Cucumber Report') {
+    steps {
+        publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'target/cucumber-reports',
+            reportFiles: 'cucumber.html',
+            reportName: 'Flipkart Cucumber Report'
+        ])
+    }
+}
  
         stage('Generate Reports') {
             steps {
