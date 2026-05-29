@@ -10,10 +10,11 @@ pipeline {
     stages {
  
         stage('Git Checkout') {
-            steps {
-                git 'https://github.com/Khushburautu01/flipkart_wipro.git'//
-            }
-        }
+    steps {
+        git branch: 'main',
+            url: 'https://github.com/Khushburautu01/flipkart_wipro.git'
+    }
+}
  
         stage('Clean Project') {
             steps {
