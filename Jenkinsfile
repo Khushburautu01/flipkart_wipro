@@ -42,18 +42,14 @@ pipeline {
  
     }
  
-    post {
- 
-        always {
-            archiveArtifacts artifacts: 'reports/*'
-        }
- 
-        success {
-            echo 'Pipeline Executed Successfully'
-        }
- 
-        failure {
-            echo 'Pipeline Failed'
-        }
+   post {
+
+    success {
+        echo 'Pipeline Executed Successfully'
     }
+
+    failure {
+        echo 'Pipeline Failed'
+    }
+}
 }
