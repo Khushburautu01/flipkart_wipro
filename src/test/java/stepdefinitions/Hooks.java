@@ -18,10 +18,13 @@ public class Hooks extends BaseTest {
     @After
     public void tearDownScenario(Scenario scenario) throws IOException {
 
-        // Take screenshot BEFORE browser closes
+        // Take screenshot before closing browser
         takeScreenshot(scenario.getName());
 
-        // Then close browser
-        tearDown();
+        // Close browser safely
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 }

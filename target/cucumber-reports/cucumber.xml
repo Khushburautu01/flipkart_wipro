@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="218.897" tests="5" skipped="0" failures="0" errors="0">
-<testcase classname="Login Popup" name="Validate login popup - Example #1.1" time="30.138">
+<testsuite name="Cucumber" time="112.906" tests="5" skipped="0" failures="0" errors="0">
+<testcase classname="Login Popup" name="Validate login popup - Example #1.1" time="25.424">
 <system-out><![CDATA[
 Given User launches the Flipkart website....................................passed
 When User clicks Login button...............................................passed
 Then Login popup should appear..............................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Scroll Functionality" name="Validate page scrolling - Example #1.1" time="20.235">
+<testcase classname="Scroll Functionality" name="Validate page scrolling - Example #1.1" time="12.917">
 <system-out><![CDATA[
 Given User launches the browser and opens Flipkart website..................passed
 When User scrolls down the page.............................................passed
 Then Page should scroll successfully........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Flipkart Search Functionality" name="Validate mobile search functionality - Example #1.1" time="42.631">
+<testcase classname="Flipkart Search Functionality" name="Validate mobile search functionality - Example #1.1" time="24.727">
 <system-out><![CDATA[
 Given User launches the browser and opens Flipkart website..................passed
 When User searches for "iPhone 15"..........................................passed
 Then User should navigate to the search results page........................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Flipkart Search Functionality" name="Validate mobile search functionality - Example #1.2" time="92.386">
+<testcase classname="Flipkart Search Functionality" name="Validate mobile search functionality - Example #1.2" time="25.323">
 <system-out><![CDATA[
 Given User launches the browser and opens Flipkart website..................passed
 When User searches for "Samsung"............................................passed
 Then User should navigate to the search results page........................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Flipkart Search Functionality" name="Validate mobile search functionality - Example #1.3" time="33.354">
+<testcase classname="Flipkart Search Functionality" name="Validate mobile search functionality - Example #1.3" time="24.297">
 <system-out><![CDATA[
 Given User launches the browser and opens Flipkart website..................passed
 When User searches for "Vivo"...............................................passed

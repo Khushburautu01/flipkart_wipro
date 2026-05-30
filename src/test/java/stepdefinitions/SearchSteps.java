@@ -28,10 +28,12 @@ public class SearchSteps extends BaseTest {
     @Then("User should navigate to the search results page")
     public void user_should_navigate_to_the_search_results_page() {
 
-    	 String currentUrl = driver.getCurrentUrl();
+        String currentUrl = driver.getCurrentUrl();
 
-    	    System.out.println(currentUrl);
+        System.out.println(currentUrl);
 
-    	    Assert.assertTrue(currentUrl.contains("search"));
-    	}
+        Assert.assertTrue(
+                currentUrl.contains("search"),
+                "Search results page not opened");
+    }
 }

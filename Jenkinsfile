@@ -10,10 +10,11 @@ pipeline {
     stages {
  
         stage('Git Checkout') {
-            steps {
-                git 'https://github.com/your-repo/flipkart-bdd-framework.git'//git url
-            }
-        }
+    steps {
+        git branch: 'main',
+            url: 'https://github.com/Khushburautu01/flipkart_wipro.git'
+    }
+}
  
         stage('Clean Project') {
             steps {
@@ -26,33 +27,30 @@ pipeline {
                 bat 'mvn test'
             }
         }
+        stage('Publish Cucumber Report') {
+    steps {
+        publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'target/cucumber-reports',
+            reportFiles: 'cucumber.html',
+            reportName: 'Flipkart Cucumber Report'
+        ])
+    }
+}
  
-        stage('Generate Reports') {
-            steps {
-                publishHTML([
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'reports',
-                    reportFiles: 'ExtentReport.html',
-                    reportName: 'Extent Report'
-                ])
-            }
-        }
+       
     }
  
-    post {
- 
-        always {
-            archiveArtifacts artifacts: 'reports/*'
-        }
- 
-        success {
-            echo 'Pipeline Executed Successfully'
-        }
- 
-        failure {
-            echo 'Pipeline Failed'
-        }
+   post {
+
+    success {
+        echo 'Pipeline Executed Successfully'
     }
+
+    failure {
+        echo 'Pipeline Failed'
+    }
+}
 }

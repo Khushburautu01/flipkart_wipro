@@ -9,39 +9,69 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 //Base class for browser setup and teardown
 public class BaseTest {
 	 // Browser initialization method
 		public static WebDriver driver;
 		public WebDriver initialization() throws InterruptedException {
-			
-				WebDriverManager.chromedriver().setup();
-				driver = new ChromeDriver();
-				 BaseTest.driver = driver;
-				driver.manage().window().maximize();
-				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-				driver.get("https://www.flipkart.com");
-				Thread.sleep(3000);
-				return driver;
-			}
-		//take screenshot
-		public void takeScreenshot(String screenshotName) throws IOException {
 
-		    File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		    WebDriverManager.chromedriver().setup();
 
-		    File destination = new File("./src/test/resources/screenshots/" + screenshotName + ".png");
+		    ChromeOptions options = new ChromeOptions();
 
-		    FileUtils.copyFile(source, destination);
+		    // Required for Docker/Linux
+		    options.addArguments("--headless=new");
+		    options.addArguments("--no-sandbox");
+		    options.addArguments("--disable-dev-shm-usage");
+		    options.addArguments("--disable-gpu");
+		    options.addArguments("--remote-allow-origins=*");
+		    options.addArguments("--window-size=1366,768");
+		    options.addArguments("--single-process");
 
-		    System.out.println("Screenshot saved successfully");
+		    driver = new ChromeDriver(options);
+
+		    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		    driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(120));
+
+		    try {
+		        driver.get("https://www.flipkart.com");
+		    } catch (Exception e) {
+		        System.out.println("Retrying Flipkart launch...");
+		        driver.navigate().to("https://www.flipkart.com");
+		    }
+
+		    Thread.sleep(3000);
+
+		    return driver;
 		}
-		 // Browser close method
-		public void tearDown() {
-			if(driver != null) {
-			driver.quit();
-		}
-		
-		}
-}
+		 // Take Screenshot
+	    public void takeScreenshot(String screenshotName) throws IOException {
+
+	        if (driver == null) {
+	            System.out.println("Driver is null. Screenshot skipped.");
+	            return;
+	        }
+
+	        File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+	        File destination = new File(
+	                "./src/test/resources/screenshots/" + screenshotName + ".png");
+
+	        FileUtils.copyFile(source, destination);
+
+	        System.out.println("Screenshot saved successfully");
+	    }
+
+	    // Browser close method
+	    public void tearDown() {
+
+	        if (driver != null) {
+	            driver.quit();
+	            driver = null;
+	        }
+	    }
+	}
 
