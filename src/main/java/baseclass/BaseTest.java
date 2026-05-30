@@ -29,7 +29,6 @@ public class BaseTest {
 		    options.addArguments("--disable-gpu");
 		    options.addArguments("--remote-allow-origins=*");
 		    options.addArguments("--window-size=1366,768");
-		    options.addArguments("--single-process");
 
 		    driver = new ChromeDriver(options);
 
