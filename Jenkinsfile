@@ -27,7 +27,11 @@ pipeline {
                 bat 'mvn test'
             }
         }
+<<<<<<< HEAD
         stage('Publish Cucumber Report') {
+=======
+     stage('Publish Cucumber Report') {
+>>>>>>> 52a19a72003a886e2e9dd21ae534e95e7f187ac9
     steps {
         publishHTML([
             allowMissing: false,
@@ -40,7 +44,6 @@ pipeline {
     }
 }
  
-       
     }
  
    post {
